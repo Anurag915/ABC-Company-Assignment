@@ -1,6 +1,5 @@
-import React from 'react';
+import React from "react";
 
-// This component displays a single product card with enhanced UI.
 const ProductCard = ({ product, onBuy }) => {
   return (
     <div
@@ -13,12 +12,12 @@ const ProductCard = ({ product, onBuy }) => {
         alt={product.title}
         className="w-full h-48 object-cover rounded-t-xl"
         onError={(e) => {
-          e.target.onerror = null; // Prevent infinite loop on error
-          e.target.src = `https://placehold.co/400x250/cccccc/333333?text=Image+Error`; // Fallback image
+          e.target.onerror = null;
+          e.target.src = `https://placehold.co/400x250/cccccc/333333?text=Image+Error`;
         }}
       />
       <div className="p-5 flex flex-col flex-grow">
-        {product.category && ( // Conditionally render category if it exists
+        {product.category && (
           <span className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">
             {product.category}
           </span>
@@ -26,7 +25,7 @@ const ProductCard = ({ product, onBuy }) => {
         <h2 className="text-xl font-bold text-gray-900 mb-2 leading-tight">
           {product.title}
         </h2>
-        {product.description && ( // Conditionally render description if it exists
+        {product.description && (
           <p className="text-sm text-gray-600 mb-4 flex-grow">
             {product.description}
           </p>

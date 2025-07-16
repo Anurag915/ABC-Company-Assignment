@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ProductCard from "../components/ProductCard"; 
-import Navbar from "../components/Navbar"; 
+import ProductCard from "../components/ProductCard";
+import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -52,14 +52,13 @@ const products = [
 
 const Home = () => {
   const [user, setUser] = useState(null);
-  const [showErrorModal, setShowErrorModal] = useState(false); // State for error modal
-  const [errorMessage, setErrorMessage] = useState(""); // Error message for modal
+  const [showErrorModal, setShowErrorModal] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState(""); 
   const navigate = useNavigate();
 
   const fetchUser = async () => {
     try {
       const res = await axios.get(`${apiUrl}/auth/current-user`, {
-        // Use apiUrl variable
         withCredentials: true,
       });
       setUser(res.data);
@@ -74,21 +73,20 @@ const Home = () => {
 
   const handleBuy = async (productId) => {
     if (!user) {
-      // If user is not logged in, navigate to login page
       return navigate("/login");
     }
 
     try {
       const res = await axios.post(
-        `${apiUrl}/api/payment/create-checkout-session`, // Use apiUrl variable
+        `${apiUrl}/api/payment/create-checkout-session`,
         { productId },
         { withCredentials: true }
       );
       window.location.href = res.data.url;
     } catch (err) {
       console.error("Payment failed", err);
-      setErrorMessage("Payment session failed to start. Please try again."); // Set specific error message
-      setShowErrorModal(true); // Show the error modal
+      setErrorMessage("Payment session failed to start. Please try again.");
+      setShowErrorModal(true);
     }
   };
 
@@ -100,11 +98,8 @@ const Home = () => {
   return (
     <div className="bg-gray-50 min-h-screen pb-10">
       {" "}
-      {/* Added background and padding-bottom */}
-      {/* <Navbar user={user} /> */}
       <div className="p-6 pt-10 max-w-7xl mx-auto">
         {" "}
-        {/* Adjusted padding and added max-width for content */}
         <h1 className="text-4xl font-extrabold mb-4 text-center text-gray-800">
           Discover Our Cutting-Edge Products
         </h1>
@@ -118,7 +113,6 @@ const Home = () => {
           ))}
         </div>
       </div>
-      {/* Error Modal/Message Box */}
       {showErrorModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full text-center">

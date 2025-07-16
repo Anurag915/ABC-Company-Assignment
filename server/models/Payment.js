@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 
 const paymentSchema = new mongoose.Schema({
@@ -7,7 +6,7 @@ const paymentSchema = new mongoose.Schema({
   currency: String,
   payment_status: String,
   stripeId: String,
-  productId: String, // added to track purchased product
+  productId: String,
   createdAt: {
     type: Date,
     default: Date.now,

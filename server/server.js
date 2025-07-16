@@ -1,4 +1,4 @@
-require("dotenv").config(); // Must be first
+require("dotenv").config(); 
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -13,15 +13,12 @@ const adminRoutes = require("./routes/admin");
 
 const app = express();
 
-//  Stripe Webhook: raw body ONLY for webhook
-// If using Express 4.16.0+ you can use express.raw directly
 app.post(
   "/api/payment/webhook",
-  express.raw({ type: "application/json" }), // Using express.raw
+  express.raw({ type: "application/json" }), 
   require("./routes/payment").webhookHandler
 );
 
-// Enable CORS
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -29,11 +26,9 @@ app.use(
   })
 );
 
-// Other middleware
 app.use(cookieParser());
 app.use(express.json());
 
-// Sessions
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -47,28 +42,23 @@ app.use(
   })
 );
 
-// Passport
 require("./config/passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
-//  MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error(err));
 
-//  Auth + Payment Routes (excluding webhook)
 app.use("/auth", authRoutes);
-app.use("/api/payment", paymentRoutes.router); // exclude .webhookHandler
+app.use("/api/payment", paymentRoutes.router); 
 app.use("/api/admin", adminRoutes);
 
-// Root
 app.get("/", (req, res) => {
   res.send("Welcome to the OAuth Demo");
 });
 
-// Start server
 app.listen(process.env.PORT, () => {
   console.log(` Server running on port ${process.env.PORT}`);
 });

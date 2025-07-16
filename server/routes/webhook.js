@@ -1,4 +1,3 @@
-// Stripe webhook
 router.post(
   "/webhook",
   bodyParser.raw({ type: "application/json" }),
@@ -20,7 +19,6 @@ router.post(
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
 
-      // Save to MongoDB
       try {
         await Payment.create({
           email: session.customer_email,
@@ -30,9 +28,9 @@ router.post(
           stripeId: session.id,
         });
 
-        console.log("✅ Payment saved");
+        console.log(" Payment saved");
       } catch (err) {
-        console.error("❌ Failed to save payment:", err);
+        console.error(" Failed to save payment:", err);
       }
     }
 

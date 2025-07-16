@@ -16,7 +16,7 @@ const Cancel = () => {
     <div className="flex items-center justify-center h-screen text-center">
       <div>
         <h1 className="text-4xl font-bold text-red-600 mb-4">
-          Payment Cancelled ❌
+          Payment Cancelled 
         </h1>
         <p>You can try again anytime.</p>
         <p className="mt-4 text-gray-500">Redirecting to home...</p>
