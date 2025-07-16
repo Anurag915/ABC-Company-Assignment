@@ -94,7 +94,7 @@ EMAIL_PASS=your_email_password_or_app_password
 
 ```bash
 
-
+stripe listen --forward-to localhost:5000/api/payment/webhook --api-key your_stripe_secret_key --events checkout.session.completed
 ```
 
 ---
