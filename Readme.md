@@ -6,33 +6,33 @@ A full-featured web application for browsing, purchasing, and managing innovativ
 
 ### 🧑‍💻 User Features
 
-* Browse cutting-edge tech products (AI platforms, hardware, sensors, etc.)
-* Add multiple products to cart
-* Secure checkout via Stripe
-* Payment confirmation email to user
-* View order success and cancellation pages
-* Responsive design
+- Browse cutting-edge tech products (AI platforms, hardware, sensors, etc.)
+- Add multiple products to cart
+- Secure checkout via Stripe
+- Payment confirmation email to user
+- View order success and cancellation pages
+- Responsive design
 
 ### 🛠️ Admin Features
 
-* Admin login via authorized email
-* View all successful payments with product details
-* Dashboard includes:
+- Admin login via authorized email
+- View all successful payments with product details
+- Dashboard includes:
 
-  * User email
-  * Purchased products (title, category, description)
-  * Payment status
-  * Timestamp
+  - User email
+  - Purchased products (title, category, description)
+  - Payment status
+  - Timestamp
 
 ### 📧 Email Notifications
 
-* Admin receives email for every completed purchase (single or multiple items)
-* User receives email confirmation with:
+- Admin receives email for every completed purchase (single or multiple items)
+- User receives email confirmation with:
 
-  * List of purchased products
-  * Amount paid
-  * Category and description
-  * Timestamp
+  - List of purchased products
+  - Amount paid
+  - Category and description
+  - Timestamp
 
 ---
 
@@ -56,10 +56,11 @@ A full-featured web application for browsing, purchasing, and managing innovativ
  └ 📄 main.jsx
 
 📁 server
+ ├ 📂 config/
  ├ 📂 models/
  ├ 📂 routes/
  ├ 📂 utils/
- ├ 📄 index.js
+ ├ 📄 server.js
  └ 📄 .env
 ```
 
@@ -71,6 +72,9 @@ Create a `.env` file in the `server` directory with the following keys:
 
 ```env
 PORT=5000
+GOOGLE_CLIENT_ID=YOUR_ID
+GOOGLE_CLIENT_SECRET=YOUR_GOOGLE_CLIENT_ID
+SESSION_SECRET=YOUR_SESSION
 MONGO_URI=your_mongodb_connection_string
 FRONTEND_URL=http://localhost:5173
 STRIPE_SECRET_KEY=your_stripe_secret_key
@@ -89,7 +93,8 @@ EMAIL_PASS=your_email_password_or_app_password
 3. Use Stripe CLI to test webhook:
 
 ```bash
-stripe listen --forward-to localhost:5000/api/payment/webhook
+
+stripe listen --forward-to localhost:5000/api/payment/webhook --api-key sk_test_XXXXXXXXXXXXXXXXXXXXXXXX --events checkout.session.completed
 ```
 
 ---
@@ -109,7 +114,7 @@ npm run dev
 ```bash
 cd server
 npm install
-npm run dev
+npx nodemon server.js
 ```
 
 ---
@@ -118,29 +123,30 @@ npm run dev
 
 > Add these if available:
 
-* Home page with product grid
-* Cart page with items
-* Checkout process
-* Admin dashboard with payments table
-* Confirmation email sample
+- Home page with product grid ![alt text](<Screenshot 2025-07-16 112509.png>)
+- Cart page with items ![alt text](<Screenshot 2025-07-16 112529.png>)
+- Checkout process ![alt text](<Screenshot 2025-07-16 112541.png>)
+- Admin dashboard with payments table ![alt text](<Screenshot 2025-07-16 112744.png>)
+- Confirmation email sample for user ![alt text](<Screenshot 2025-07-16 112610.png>)
+- Confirmation email sample for admin  ![alt text](<Screenshot 2025-07-16 112619.png>)
 
 ---
 
 ## 🧪 Future Enhancements
 
-* PDF invoice generation
-* User order history
-* Admin authentication via JWT
-* Product management via admin panel
+- PDF invoice generation
+- User order history
+- Admin authentication via JWT
+- Product management via admin panel
 
 ---
 
 ## 🙌 Acknowledgements
 
-* [Stripe API](https://stripe.com/docs)
-* [Nodemailer](https://nodemailer.com/about/)
-* [React + Vite](https://vitejs.dev/)
-* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- [Stripe API](https://stripe.com/docs)
+- [Nodemailer](https://nodemailer.com/about/)
+- [React + Vite](https://vitejs.dev/)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
 ---
 
@@ -148,7 +154,7 @@ npm run dev
 
 **Anurag Prajapati**
 📩 [anuragprajapati02005@gmail.com](mailto:anuragprajapati02005@gmail.com)
-🌐 [GitHub](https://github.com/Anurag915) | [Portfolio](#) | [LinkedIn](#)
+🌐 [GitHub](https://github.com/Anurag915) | [Portfolio](https://personal-portfolio-jwkj.onrender.com/) | [LinkedIn](https://www.linkedin.com/in/anurag-prajapati-026918268/)
 
 ---
 
