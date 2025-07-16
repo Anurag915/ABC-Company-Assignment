@@ -1,7 +1,9 @@
+
+
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ProductCard from "../components/ProductCard";
-import { useNavigate } from "react-router-dom";
+import ProductCard from "../components/ProductCard"; 
+import { useNavigate } from "react-router-dom"; 
 
 const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -54,19 +56,27 @@ const Home = ({ user, cart, setCart }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+ 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${apiUrl}/auth/current-user`, {
+        
+        await axios.get(`${apiUrl}/auth/current-user`, {
           withCredentials: true,
         });
-      } catch (err) {}
+       
+      } catch (err) {
+        console.error("Failed to fetch current user session:", err);
+      }
     };
-    fetchUser();
-  }, []);
+    
+    fetchUser(); 
+  }, []); 
 
   const handleBuy = async (productId) => {
-    if (!user) return navigate("/login");
+    if (!user) {
+      return navigate("/login");
+    }
 
     try {
       const res = await axios.post(
@@ -76,7 +86,7 @@ const Home = ({ user, cart, setCart }) => {
       );
       window.location.href = res.data.url;
     } catch (err) {
-      console.error("Payment failed", err);
+      console.error("Payment failed:", err);
       setErrorMessage("Payment session failed to start. Please try again.");
       setShowErrorModal(true);
     }
@@ -89,12 +99,19 @@ const Home = ({ user, cart, setCart }) => {
 
   const handleAddToCart = (product) => {
     const exists = cart.find((item) => item.id === product.id);
-    if (!exists) setCart([...cart, product]);
+    if (!exists) {
+      setCart([...cart, product]);
+      console.log(`${product.title} added to cart!`);
+    } else {
+      console.log(`${product.title} is already in the cart.`);
+    }
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen pb-10">
-      <div className="p-6 pt-10 max-w-7xl mx-auto">
+   
+    <div className="bg-gray-50 min-h-screen">
+     
+      <div className="p-6 pt-10 max-w-7xl mx-auto mt-16 pb-40"> 
         <h1 className="text-4xl font-extrabold mb-4 text-center text-gray-800">
           Discover Our Cutting-Edge Products
         </h1>
@@ -102,13 +119,14 @@ const Home = ({ user, cart, setCart }) => {
           Explore a selection of our innovative solutions, designed to meet the
           demands of modern research and development.
         </p>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-center">
           {products.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
               onBuy={handleBuy}
-              onAddToCart={handleAddToCart}
+              onAddToCart={handleAddToCart} 
             />
           ))}
         </div>

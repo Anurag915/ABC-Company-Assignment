@@ -10,7 +10,7 @@ import Success from "./pages/Success";
 import Cancel from "./pages/Cancel";
 import AdminDashboard from "./components/AdminDashboard";
 import Cart from "./pages/CartPage";
-
+import Footer from "./components/Footer";
 const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function App() {
@@ -110,6 +110,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </Router>
   );
 }
