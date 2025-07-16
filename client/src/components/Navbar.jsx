@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Navbar = ({ user, setUser }) => {
+const Navbar = ({ user, setUser, cartCount }) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -28,6 +28,15 @@ const Navbar = ({ user, setUser }) => {
             Admin Dashboard
           </Link>
         )}
+
+        <Link to="/cart" className="relative">
+          🛒
+          {cartCount > 0 && (
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              {cartCount}
+            </span>
+          )}
+        </Link>
 
         {user ? (
           <>

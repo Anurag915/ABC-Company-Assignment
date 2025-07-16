@@ -1,6 +1,5 @@
 import React from "react";
-
-const ProductCard = ({ product, onBuy }) => {
+const ProductCard = ({ product, onBuy, onAddToCart }) => {
   return (
     <div
       key={product.id}
@@ -30,18 +29,27 @@ const ProductCard = ({ product, onBuy }) => {
             {product.description}
           </p>
         )}
-        <div className="mt-auto flex items-center justify-between pt-4 border-t border-gray-100">
-          <p className="text-2xl font-extrabold text-gray-800">
-            ₹{product.price}
-          </p>
-          <button
-            onClick={() => onBuy(product.id)}
-            className="px-6 py-2 bg-blue-700 text-white font-semibold rounded-lg
-                       hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75
-                       transition-colors duration-200 shadow-md"
-          >
-            Buy Now
-          </button>
+
+        <div className="mt-auto pt-4 border-t border-gray-100">
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-2xl font-extrabold text-gray-800">
+              ₹{product.price}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => onAddToCart(product)}
+              className="w-1/2 px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition"
+            >
+              Add to Cart
+            </button>
+            <button
+              onClick={() => onBuy(product.id)}
+              className="w-1/2 px-4 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-800 transition"
+            >
+              Buy Now
+            </button>
+          </div>
         </div>
       </div>
     </div>
