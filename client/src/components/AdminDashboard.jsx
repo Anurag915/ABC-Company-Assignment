@@ -155,7 +155,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-gray-50 min-h-screen mt-15">
       <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-xl p-8 mb-10">
         <h1 className="text-4xl font-extrabold mb-8 text-center text-gray-800">
           Super Admin Dashboard

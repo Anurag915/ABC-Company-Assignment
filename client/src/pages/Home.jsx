@@ -1,9 +1,7 @@
-
-
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ProductCard from "../components/ProductCard"; 
-import { useNavigate } from "react-router-dom"; 
+import ProductCard from "../components/ProductCard";
+import { useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -56,22 +54,19 @@ const Home = ({ user, cart, setCart }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
- 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        
         await axios.get(`${apiUrl}/auth/current-user`, {
           withCredentials: true,
         });
-       
       } catch (err) {
         console.error("Failed to fetch current user session:", err);
       }
     };
-    
-    fetchUser(); 
-  }, []); 
+
+    fetchUser();
+  }, []);
 
   const handleBuy = async (productId) => {
     if (!user) {
@@ -108,10 +103,8 @@ const Home = ({ user, cart, setCart }) => {
   };
 
   return (
-   
     <div className="bg-gray-50 min-h-screen">
-     
-      <div className="p-6 pt-10 max-w-7xl mx-auto mt-16 pb-40"> 
+      <div className="p-6 pt-10 max-w-7xl mx-auto mt-16 pb-40">
         <h1 className="text-4xl font-extrabold mb-4 text-center text-gray-800">
           Discover Our Cutting-Edge Products
         </h1>
@@ -126,7 +119,7 @@ const Home = ({ user, cart, setCart }) => {
               key={product.id}
               product={product}
               onBuy={handleBuy}
-              onAddToCart={handleAddToCart} 
+              onAddToCart={handleAddToCart}
             />
           ))}
         </div>

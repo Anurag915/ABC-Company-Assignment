@@ -6,11 +6,9 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
 const authRoutes = require("./routes/auth");
 const paymentRoutes = require("./routes/payment");
 const adminRoutes = require("./routes/admin");
-
 const app = express();
 
 app.post(
